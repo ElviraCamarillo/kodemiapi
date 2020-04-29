@@ -8,7 +8,7 @@ const dbName = 'kodemia'
 const url = `mongodb+srv://${dbUser}:${dbPassword}@${dbHost}/${dbName}?retryWrites=true&w=majority`
 
 function connect () {
-  return mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  return mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 }
 
 module.exports = {

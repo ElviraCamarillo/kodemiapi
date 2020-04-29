@@ -7,6 +7,13 @@ const mentorsSchema = new mongoose.Schema({
     maxlength: 100,
     required: true
   },
+  typeMentor: {
+    type: String,
+    minlength: 1,
+    maxlength: 6,
+    required: true
+
+  },
   email: {
     type: String,
     required: true
