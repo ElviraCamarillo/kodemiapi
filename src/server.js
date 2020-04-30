@@ -2,6 +2,7 @@
 const express = require('express')
 const kodersRouter = require('./routes/koder')
 const mentorsRouter = require('./routes/mentors')
+const authRouter = require('./routes/auth')
 const app = express()
 
 app.use(express.json())
@@ -11,9 +12,11 @@ app.use('/koders', kodersRouter)
 
 app.use('/mentors', mentorsRouter)
 
+app.use('/auth', authRouter)
+
 // // todos los recurso en las rutas se escriben en plural
 // app.get('/koders', async (request, response) => {
-//   const allkoders = await koders.getAll()
+//   const allkoders = await koders.getAlls()
 //   response.json({
 //     message: 'All koders',
 //     data: {

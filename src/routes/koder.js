@@ -1,4 +1,5 @@
 const express = require('express')
+
 const koders = require('../usecases/koders')
 
 const router = express.Router()
@@ -70,6 +71,26 @@ router.patch('/:id', async (request, response) => {
       message: `Koder with  is ${id} updated`,
       data: {
         koder: koderUpdated
+      }
+    })
+  } catch (error) {
+    response.status(400)
+    response.json({
+      success: false,
+      error: error.message
+    })
+  }
+})
+
+// signup -> registro
+router.post('/signup', async (request, response) => {
+  try {
+    const newKoder = await koders.signup(request.body)
+    response.json({
+      success: true,
+      message: 'Koder  registered',
+      data: {
+        koder: newKoder
       }
     })
   } catch (error) {
