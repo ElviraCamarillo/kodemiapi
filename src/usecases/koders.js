@@ -55,7 +55,7 @@ async function login (email, password) {
 
   const isPasswordCorrect = await bcrypt.compare(password, koder.password)
   if (!isPasswordCorrect) throw new Error('Invalid  Data')
-
+  
   return jwt.sign({ id: koder._id }) // token
 }
 
