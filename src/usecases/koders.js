@@ -4,7 +4,7 @@ const jwt = require('../lib/jwt')
 
 const Koder = require('../models/koder')
 
-// los casos de uso son las acciones que puede ejercer un usuario en el sistema.
+// Los casos de uso son las acciones que puede ejercer un usuario en el sistema.
 
 function getAll () {
   return Koder.find()
@@ -55,7 +55,7 @@ async function login (email, password) {
 
   const isPasswordCorrect = await bcrypt.compare(password, koder.password)
   if (!isPasswordCorrect) throw new Error('Invalid  Data')
-  
+
   return jwt.sign({ id: koder._id }) // token
 }
 

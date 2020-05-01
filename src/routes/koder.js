@@ -1,10 +1,23 @@
 const express = require('express')
 
 const koders = require('../usecases/koders')
+const auth = require('../middlewares/auth')
 
 const router = express.Router()
 
-router.get('/', async (resquest, response) => {
+// middleware a nivel del  router.
+router.use((resquest, response, next) => {
+  console.log('Middleware router Koders')
+  next()
+})
+
+// Endpoints -> debe tener [Method]+[URL/Route]
+
+// GET/Koders
+router.get('/', auth, (request, response, next) => {
+  console.log('middleware en GET Koders')
+  next()
+}, async (resquest, response) => {
   try {
     const allKoders = await koders.getAll()
     response.json({
@@ -23,7 +36,7 @@ router.get('/', async (resquest, response) => {
   }
 })
 
-router.post('/', async (request, response) => {
+router.post('/', auth, async (request, response) => {
   try {
     const newKoder = await koders.create(request.body)
     response.json({
